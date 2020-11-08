@@ -10,15 +10,15 @@ Node 12.9 or above,
 yarn 1.22.5 or above,
 vue-cli 4.5.6 or above
 
-# Navigate to PROJECT_FOLDER/web (should contain package.json )
+## Navigate to PROJECT_FOLDER/web (should contain package.json )
 yarn install
 
-# build the project (this will put the files under dist folder)
+## build the project (this will put the files under dist folder)
 yarn build 
 
-# start the project 
+## start the project 
 yarn start
 
 Build Backend (SpringBoot Java)
-# Maven Build : Navigate to the root folder where pom.xml is present 
+## Maven Build : Navigate to the root folder where pom.xml is present 
 mvn clean install
