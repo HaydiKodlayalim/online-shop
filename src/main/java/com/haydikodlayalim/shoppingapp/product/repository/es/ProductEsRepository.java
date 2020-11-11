@@ -1,4 +1,4 @@
-package com.haydikodlayalim.shoppingapp.repository.es;
+package com.haydikodlayalim.shoppingapp.product.repository.es;
 
 import com.haydikodlayalim.shoppingapp.product.domain.es.ProductEs;
 import org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRepository;

@@ -2,8 +2,8 @@ package com.haydikodlayalim.shoppingapp.product.service;
 
 import com.haydikodlayalim.shoppingapp.product.model.ProductResponse;
 import com.haydikodlayalim.shoppingapp.product.model.ProductSaveRequest;
+import com.haydikodlayalim.shoppingapp.product.repository.es.ProductEsRepository;
 import com.haydikodlayalim.shoppingapp.product.repository.mongo.ProductRepository;
-import com.haydikodlayalim.shoppingapp.repository.es.ProductEsRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
