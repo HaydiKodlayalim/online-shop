@@ -21,23 +21,4 @@ public class Product {
     private String categoryId;
     private List<ProductImage> productImage;
     private Boolean active;
-
-    /*
-
-    {  document - ES
-            'id'
-            'image': 'https://productimages.hepsiburada.net/s/32/500/10352568139826.jpg', sub-document
-            'name':
-            'description':
-            'seller': - document - ES
-            'features': html document - ES
-            'available': kalan adet, - redis and document
-            'freeDelivery': false, - Service / if price > 50
-            'deliveryIn': 'Tomorrow', - calc util
-            'price':550,
-            'category' - document
-            'money':'$' - enum ()
-    }
-
-    */
 }
