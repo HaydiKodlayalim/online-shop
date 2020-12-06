@@ -1,6 +1,7 @@
 package com.haydikodlayalim.shoppingapp.product.domain;
 
 import java.util.List;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collation = "product")
 @Getter
 @Setter
+@Builder
 @EqualsAndHashCode(of = "id")
 public class Product {
 
