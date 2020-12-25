@@ -1,4 +1,4 @@
-package com.haydikodlayalim.shoppingapp.product.model;
+package com.haydikodlayalim.shoppingapp.product.model.product;
 
 import com.haydikodlayalim.shoppingapp.product.domain.MoneyTypes;
 import java.math.BigDecimal;

@@ -17,7 +17,8 @@
                           <a class="product-name" href="#">{{ item.name }}</a>
                           <div class="product-info">
                             <div class="product-info-detail">{{ item.description }}</div>
-                            <div class="product-info-detail">Seller: <a class="value" v-bind:href="item.seller.id">{{ item.seller.name }}</a>
+                            <div class="product-info-detail">Seller: <a class="value" v-bind:href="item.seller.id">{{
+                              item.seller.name }}</a>
                             </div>
                             <div class="product-info-detail"><span v-if="item.freeDelivery"> FREE </span>Delivery: <span
                                 class="value">{{ item.deliveryIn }}</span></div>
