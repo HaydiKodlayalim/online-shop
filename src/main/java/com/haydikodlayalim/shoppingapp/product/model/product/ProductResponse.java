@@ -1,6 +1,7 @@
-package com.haydikodlayalim.shoppingapp.product.model;
+package com.haydikodlayalim.shoppingapp.product.model.product;
 
 import com.haydikodlayalim.shoppingapp.product.domain.MoneyTypes;
+import com.haydikodlayalim.shoppingapp.product.model.ProductSellerResponse;
 import java.math.BigDecimal;
 import lombok.Builder;
 import lombok.Data;
