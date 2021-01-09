@@ -1,5 +1,7 @@
 package com.haydikodlayalim.shoppingapp.product.domain;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -24,5 +26,6 @@ public class Product {
     private String features;
     private String categoryId;
     private List<ProductImage> productImage;
+    private HashMap<MoneyTypes, BigDecimal> price;
     private Boolean active;
 }

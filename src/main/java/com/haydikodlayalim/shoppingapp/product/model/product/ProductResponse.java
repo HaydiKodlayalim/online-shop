@@ -19,6 +19,6 @@ public class ProductResponse {
     private boolean freeDelivery;
     private String deliveryIn;
     private BigDecimal price;
+    private String moneySymbol;
     private String categoryId;
-    private MoneyTypes moneyType;
 }

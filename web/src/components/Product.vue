@@ -36,7 +36,7 @@
                       <input id="quantity" type="number" value="1" class="form-control quantity-input">
                     </div>
                     <div class="col-md-6 price">
-                      <span>{{ item.money }} {{ item.price }}  {{item.moneyType}}</span>
+                      <span>{{ item.money }} {{ item.price }}  {{item.moneySymbol}}</span>
                     </div>
                   </div>
                 </div>
