@@ -4,9 +4,9 @@ import com.haydikodlayalim.shoppingapp.product.domain.MoneyTypes;
 import com.haydikodlayalim.shoppingapp.product.domain.Product;
 import com.haydikodlayalim.shoppingapp.product.domain.ProductImage;
 import com.haydikodlayalim.shoppingapp.product.domain.es.ProductEs;
+import com.haydikodlayalim.shoppingapp.product.model.ProductSellerResponse;
 import com.haydikodlayalim.shoppingapp.product.model.product.ProductResponse;
 import com.haydikodlayalim.shoppingapp.product.model.product.ProductSaveRequest;
-import com.haydikodlayalim.shoppingapp.product.model.ProductSellerResponse;
 import com.haydikodlayalim.shoppingapp.product.repository.mongo.ProductRepository;
 import java.math.BigDecimal;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,6 @@ import static java.util.stream.Collectors.toList;
 public class ProductService {
 
     private final ProductRepository productRepository;
-    private final ProductPriceService productPriceService;
     private final ProductDeliveryService productDeliveryService;
     private final ProductAmountService productAmountService;
     private final ProductImageService productImageService;
@@ -41,6 +40,7 @@ public class ProductService {
                 .description(request.getDescription())
                 .features(request.getFeatures())
                 .name(request.getName())
+                .price(request.getPrice())
                 .productImage(request.getImages().stream().map(it -> new ProductImage(FEATURE, it)).collect(toList()))
                 .build();
         product = productRepository.save(product).block();
@@ -60,9 +60,10 @@ public class ProductService {
             return null;
         }
 
-        BigDecimal productPrice = productPriceService.getByMoneyType(item.getId(), MoneyTypes.USD);
         return ProductResponse.builder()
-                .price(productPrice)
+                // TODO client request uzerinden validate edilecek
+                .price(item.getPrice().get("USD"))
+                .moneySymbol(MoneyTypes.USD.getSymbol())
                 .name(item.getName())
                 .features(item.getFeatures())
                 .id(item.getId())
@@ -70,8 +71,7 @@ public class ProductService {
                 .deliveryIn(productDeliveryService.getDeliveryInfo(item.getId()))
                 .categoryId(item.getCategory().getId())
                 .available(productAmountService.getByProductId(item.getId()))
-                .freeDelivery(productDeliveryService.freeDeliveryCheck(item.getId(), productPrice))
-                .moneyType(MoneyTypes.USD)
+                .freeDelivery(productDeliveryService.freeDeliveryCheck(item.getId(), item.getPrice().get("USD"), MoneyTypes.USD))
                 .image(productImageService.getProductMainImage(item.getId()))
                 .seller(ProductSellerResponse.builder().id(item.getSeller().getId()).name(item.getSeller().getName()).build())
                 .build();

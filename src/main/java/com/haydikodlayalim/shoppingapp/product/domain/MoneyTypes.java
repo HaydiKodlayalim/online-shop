@@ -12,4 +12,8 @@ public enum MoneyTypes {
         this.label = label;
         this.symbol = symbol;
     }
+
+    public String getSymbol() {
+        return symbol;
+    }
 }
