@@ -18,7 +18,8 @@
                           <div class="product-info">
                             <div class="product-info-detail">{{ item.description }}</div>
                             <div class="product-info-detail">Seller: <a class="value" v-bind:href="item.seller.id">{{
-                              item.seller.name }}</a>
+                                item.seller.name
+                              }}</a>
                             </div>
                             <div class="product-info-detail"><span v-if="item.freeDelivery"> FREE </span>Delivery: <span
                                 class="value">{{ item.deliveryIn }}</span></div>
@@ -36,7 +37,7 @@
                       <input id="quantity" type="number" value="1" class="form-control quantity-input">
                     </div>
                     <div class="col-md-6 price">
-                      <span>{{ item.money }} {{ item.price }}  {{item.moneySymbol}}</span>
+                      <span>{{ item.money }} {{ item.price }}  {{ item.moneySymbol }}</span>
                     </div>
                   </div>
                 </div>
@@ -63,10 +64,10 @@
 </template>
 
 <script>
-import {get} from "@/common/api.service";
+import {getAll} from "@/common/product.service";
 
 export default {
-  name: 'Product',
+  name: 'ProductListComponent',
   components: {},
   data() {
     return {products: []}
@@ -76,7 +77,7 @@ export default {
   },
   methods: {
     getProducts() {
-      get('products').then(response => {
+      getAll().then(response => {
         this.products = response.data;
       })
     }
