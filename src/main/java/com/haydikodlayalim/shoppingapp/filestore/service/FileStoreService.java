@@ -1,11 +1,11 @@
 package com.haydikodlayalim.shoppingapp.filestore.service;
 
-import java.io.File;
-import java.nio.file.Files;
+import com.haydikodlayalim.shoppingapp.filestore.service.s3.FileService;
+import java.io.InputStream;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ResourceUtils;
 import reactor.core.publisher.Mono;
 
 @Slf4j
@@ -13,8 +13,17 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class FileStoreService {
 
-    public Mono<byte[]> getImage(String id) throws Exception {
-        File file = ResourceUtils.getFile("classpath:docs/app_model.png");
-        return Mono.just(Files.readAllBytes(file.toPath()));
+    private final FileService fileService;
+
+    public Mono<byte[]> getImage(String id) {
+        return Mono.just(fileService.get(id));
+    }
+
+    public void saveImage(String id, InputStream isFile) {
+        fileService.save(id, MediaType.IMAGE_JPEG_VALUE, isFile);
+    }
+
+    public void saveImage(String id) {
+        fileService.delete(id);
     }
 }

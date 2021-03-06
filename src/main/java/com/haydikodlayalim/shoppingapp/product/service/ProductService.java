@@ -8,7 +8,6 @@ import com.haydikodlayalim.shoppingapp.product.model.ProductSellerResponse;
 import com.haydikodlayalim.shoppingapp.product.model.product.ProductResponse;
 import com.haydikodlayalim.shoppingapp.product.model.product.ProductSaveRequest;
 import com.haydikodlayalim.shoppingapp.product.repository.mongo.ProductRepository;
-import java.math.BigDecimal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -24,7 +23,6 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final ProductDeliveryService productDeliveryService;
     private final ProductAmountService productAmountService;
-    private final ProductImageService productImageService;
     private final ProductEsService productEsService;
 
     public Flux<ProductResponse> getAll() {
@@ -72,7 +70,7 @@ public class ProductService {
                 .categoryId(item.getCategory().getId())
                 .available(productAmountService.getByProductId(item.getId()))
                 .freeDelivery(productDeliveryService.freeDeliveryCheck(item.getId(), item.getPrice().get("USD"), MoneyTypes.USD))
-                .image(productImageService.getProductMainImage(item.getId()))
+                .image(item.getImages().get(0))
                 .seller(ProductSellerResponse.builder().id(item.getSeller().getId()).name(item.getSeller().getName()).build())
                 .build();
     }

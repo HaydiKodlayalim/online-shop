@@ -7,7 +7,7 @@
             <div class="product">
               <div class="row">
                 <div class="col-md-3">
-                  <img class="img-fluid mx-auto d-block image" :src="item.image">
+                  <img class="img-fluid mx-auto d-block image" :src="getImageUrl(item.image)">
                 </div>
                 <div class="col-md-6">
                   <div class="info">
@@ -65,6 +65,7 @@
 
 <script>
 import {getAll} from "@/common/product.service";
+import {BASE_URL} from "@/common/config";
 
 export default {
   name: 'ProductListComponent',
@@ -80,6 +81,9 @@ export default {
       getAll().then(response => {
         this.products = response.data;
       })
+    },
+    getImageUrl(id) {
+      return BASE_URL + 'filestore/' + id;
     }
   }
 }
