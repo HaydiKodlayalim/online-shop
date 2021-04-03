@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-12 col-lg-12">
     <div class="row">
-      Comments
+      Comments for {{productId}}
     </div>
     <hr>
   </div>
@@ -9,7 +9,8 @@
 
 <script>
 export default {
-  name: "comments"
+  name: "comments",
+  props: ['productId']
 }
 </script>
 

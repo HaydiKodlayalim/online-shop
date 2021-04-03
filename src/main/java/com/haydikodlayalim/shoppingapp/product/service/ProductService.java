@@ -5,6 +5,7 @@ import com.haydikodlayalim.shoppingapp.product.domain.Product;
 import com.haydikodlayalim.shoppingapp.product.domain.ProductImage;
 import com.haydikodlayalim.shoppingapp.product.domain.es.ProductEs;
 import com.haydikodlayalim.shoppingapp.product.model.ProductSellerResponse;
+import com.haydikodlayalim.shoppingapp.product.model.product.ProductDetailResponse;
 import com.haydikodlayalim.shoppingapp.product.model.product.ProductResponse;
 import com.haydikodlayalim.shoppingapp.product.model.product.ProductSaveRequest;
 import com.haydikodlayalim.shoppingapp.product.repository.mongo.ProductRepository;
@@ -77,5 +78,26 @@ public class ProductService {
 
     public Mono<Long> count() {
         return productRepository.count();
+    }
+
+    public Mono<ProductDetailResponse> getProductDetail(String id) {
+        return this.mapToDto(productEsService.findById(id));
+    }
+
+    private Mono<ProductDetailResponse> mapToDto(Mono<ProductEs> product) {
+        return product.map( item -> ProductDetailResponse.builder()
+                .price(item.getPrice().get("USD"))
+                .moneySymbol(MoneyTypes.USD.getSymbol())
+                .name(item.getName())
+                .features(item.getFeatures())
+                .id(item.getId())
+                .description(item.getDescription())
+                .deliveryIn(productDeliveryService.getDeliveryInfo(item.getId()))
+                .categoryId(item.getCategory().getId())
+                .available(productAmountService.getByProductId(item.getId()))
+                .freeDelivery(productDeliveryService.freeDeliveryCheck(item.getId(), item.getPrice().get("USD"), MoneyTypes.USD))
+                .images(item.getImages())
+                .seller(ProductSellerResponse.builder().id(item.getSeller().getId()).name(item.getSeller().getName()).build())
+                .build());
     }
 }

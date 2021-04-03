@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    Feature info 1
+    {{ productFeatures }}
   </div>
   <hr/>
   <div class="row">
@@ -18,7 +18,8 @@
 
 <script>
 export default {
-  name: "features"
+  name: "features",
+  props: ['productFeatures']
 }
 </script>
 
