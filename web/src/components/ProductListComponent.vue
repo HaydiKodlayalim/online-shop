@@ -14,7 +14,7 @@
                     <div class="row">
                       <div class="col-md-5 product-name">
                         <div class="product-name">
-                          <a class="product-name" href="#">{{ item.name }}</a>
+                          <a class="product-name" v-bind:href="'/detail/' + item.id">{{ item.name }}</a>
                           <div class="product-info">
                             <div class="product-info-detail">{{ item.description }}</div>
                             <div class="product-info-detail">Seller: <a class="value" v-bind:href="item.seller.id">{{

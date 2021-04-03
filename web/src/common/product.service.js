@@ -1,7 +1,7 @@
 import {get} from "@/common/api.service";
 
 
-export function getById(id) {
+export function getProductDetailById(id) {
     return get('products/' + id);
 }
 
